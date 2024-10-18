@@ -1,0 +1,54 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+// Function to generate Fibonacci sequence up to n elements
+vector<int> generateFibonacci(int n) {
+    vector<int> fib(n);
+    fib[0] = 0;
+    fib[1] = 1;
+    for (int i = 2; i < n; ++i) {
+        fib[i] = fib[i - 1] + fib[i - 2];
+    }
+    return fib;
+}
+
+// Function to access the nth Fibonacci number
+int getFibonacciValue(int n) {
+    if (n == 0) return 0;
+    if (n == 1) return 1;
+
+    int a = 0, b = 1, fib;
+    for (int i = 2; i <= n; ++i) {
+        fib = a + b;
+        a = b;
+        b = fib;
+    }
+    return fib;
+}
+
+int main() {
+    int n;
+    cout << "Enter the number of Fibonacci numbers to generate: ";
+    cin >> n;
+
+    // Generate Fibonacci sequence
+    vector<int> fibonacciSeries = generateFibonacci(n);
+
+    // Display the generated Fibonacci sequence
+    cout << "Fibonacci sequence: ";
+    for (int i = 0; i < n; ++i) {
+        cout << fibonacciSeries[i] << " ";
+    }
+    cout << endl;
+
+    // Access a specific Fibonacci number
+    int index;
+    cout << "Enter the index to get the Fibonacci number at that position: ";
+    cin >> index;
+    int fibonacciValue = getFibonacciValue(index);
+
+    cout << "Fibonacci number at position " << index << " is: " << fibonacciValue << endl;
+
+    return 0;
+}
